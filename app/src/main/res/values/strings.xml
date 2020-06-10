@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">JuniorHome</string>
+    <string name="user">User</string>
+    <string name="userProfile">action_profile</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="title_staff_list">Staff</string>
+    <string name="title_staff_detail">Staff Detail</string>
+    <string name="view_staff">VIEW STAFF</string>
+    <string name="change_password">Change Password</string>
+    <string name="edit">Edit</string>
+    <string name="email">Email :</string>
+    <string name="textview">TextView</string>
+    <string name="phone">Phone #</string>
+</resources>

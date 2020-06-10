@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ll_options"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="Choose Any Option"
+        android:textColor="#000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/ll_options"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        tools:context=".Admin">
+
+        <Button
+            android:id="@+id/viewChild"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_rounded_bg"
+            android:onClick="viewChild"
+            android:text="VIEW CHILD/PARENT"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/timeTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_rounded_bg"
+            android:text="VIEW TIME TABLE"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/viewRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_rounded_bg"
+            android:onClick="viewRequest"
+            android:text="REQUESTS"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/attendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_rounded_bg"
+            android:text="ATTENDENCE"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/addStaff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_rounded_bg"
+            android:onClick="addStaff"
+            android:text="ADD STAFF"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/view_staff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_rounded_bg"
+            android:onClick="viewStaff"
+            android:text="@string/view_staff"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

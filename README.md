@@ -1,2 +1,2 @@
-"# FYP" 
-"# FYP" 
+# DayCare-JuniorHome
+Android app for DayCare with Firebase Database

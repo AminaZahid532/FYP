@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,28 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.juniorhome.Messaging.adapters.ContactsAdapter;
-import com.example.juniorhome.Messaging.models.Contacts;
 import com.example.juniorhome.R;
 import com.example.juniorhome.SessionManager;
-import com.example.juniorhome.UserItemClass;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.example.juniorhome.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.picasso.Picasso;
 
 import java.util.Iterator;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -95,9 +85,9 @@ public class ContactsFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful() && task.getResult() != null){
-                    List<UserItemClass> usersList = task.getResult().toObjects(UserItemClass.class);
+                    List<UserModel> usersList = task.getResult().toObjects(UserModel.class);
                     if(usersList.size() > 0){
-                        Iterator<UserItemClass> iterable = usersList.iterator();
+                        Iterator<UserModel> iterable = usersList.iterator();
                         while(iterable.hasNext()){
                             if(iterable.next().getUid().equals(session.getUserId())){
                                 iterable.remove();

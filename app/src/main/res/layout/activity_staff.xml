@@ -31,6 +31,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_rounded_bg"
             android:text="VIEW CHILDREN"
+            android:onClick="viewChild"
             android:textColor="@color/white" />
 
         <Button
@@ -56,17 +57,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:onClick="viewtimeTable"
             android:background="@drawable/btn_rounded_bg"
-            android:text="TIME TABLE" />
-
-        <Button
-            android:id="@+id/button15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_rounded_bg"
-            android:text="EDIT PROFILE"
-            android:textColor="@color/white" />
+            android:text="Time Table"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/button16"

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+        <TextView
+            android:text="TimeTable of DayCare"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:paddingBottom="4dp"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+
+        <TextView
+            android:text="For NewBorns to 6 Months Babies"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="7dp"
+            />
+
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Open – 9:00 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Arrival and Breakfast"
+                android:gravity="right"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="9:00 a.m. – 9:15 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Clean up and change time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="9:15 a.m. – 10:30 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Play with toy "
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="10:30 a.m. – 11:30 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Nap Time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="11:30 a.m. – 12:00 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Snack Time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="12:00 p.m. – 02:00 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Nap Time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="02:00 p.m. – 02:20 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Clean up and change time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="02:20 p.m. – 03:00 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Story Time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="03:00 p.m. – 04:00 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Snack and Free Play"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="04:00 p.m. – close"
+                android:padding="3dip" />
+            <TextView
+                android:text="Nap Time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TextView
+            android:text="For Toddlers"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:paddingBottom="4dp"
+            />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Open – 9:00 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Arrival and Breakfast"
+                android:gravity="right"
+                android:padding="3dip" />
+
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="9:00 a.m. – 9:15 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Morning Snack"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="9:15 a.m. – 9:30 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Greeting Time "
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="9:30 a.m. – 10:10 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Learning Center Activities"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="10:10 a.m. – 10:40 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Outdoor Play"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="10:40 a.m. – 11:10 a.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Lunch"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="11:50 a.m. – 1:50 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Rest Time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="1:50 p.m. – 2:05 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Afternoon Snack"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="2:05 p.m. – 2:45 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Learning Centers"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="2:45 p.m. – 3:15 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Outdoor Play"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="3:15 p.m. – 3:45 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Focus Activity"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="3:45 p.m. – 4:00 p.m."
+                android:padding="3dip" />
+            <TextView
+                android:text="Community Time"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="4:00 p.m. – Close"
+                android:padding="3dip" />
+            <TextView
+                android:text="Learning Centers"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:paddingBottom="35dp"/>
+
+    </TableLayout>
+
+
+
+</ScrollView>

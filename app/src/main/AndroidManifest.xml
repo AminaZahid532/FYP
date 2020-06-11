@@ -10,67 +10,83 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Messaging.activities.MessagingActivity" />
-        <activity android:name=".Messaging.activities.ChatActivity"
+        <activity android:name=".childyHour" />
+        <activity android:name=".buisness_hour" />
+        <activity android:name=".phoneAndEmail" />
+        <activity android:name=".help_center" />
+        <activity android:name=".time_table" />
+        <activity android:name=".postalAddress"/>
+        <activity android:name=".Messaging.activities.SettingsActivity"
             android:theme="@style/NoActionBarTheme"/>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".Messaging.activities.MessagingActivity" />
+        <activity
+            android:name=".Messaging.activities.ChatActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".ChildrenListView.ChildrenListActivity"
+            android:parentActivityName=".Login" />
+        <activity
+            android:name=".ChildrenListView.CDetailsActivity"
+            android:parentActivityName=".ChildrenListView.ChildrenListActivity" />
+        <activity
+            android:name=".ParentListView.ParentListActivity"
+            android:parentActivityName=".Login" />
+        <activity
+            android:name=".ParentListView.PDetailsActivity"
+            android:parentActivityName=".Login" />
+        <activity
+            android:name=".StaffListView.ItemsActivity"
+            android:parentActivityName=".Login">
 
-        <activity android:name=".ChildrenListView.ChildrenListActivity"
-            android:parentActivityName=".Login"/>
-
-        <activity android:name=".ChildrenListView.CDetailsActivity"
-            android:parentActivityName=".ChildrenListView.ChildrenListActivity"/>
-
-        <activity android:name=".ParentListView.ParentListActivity"
-            android:parentActivityName=".Login"/>
-        <activity android:name=".ParentListView.PDetailsActivity"
-            android:parentActivityName=".Login"/>
-
-        <activity android:name=".StaffListView.ItemsActivity"
-        android:parentActivityName=".Login">
-        <!-- The meta-data tag is required if you support API level 15 and lower -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Login" />
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Login" />
         </activity>
-
-        <activity android:name=".StaffListView.DetailsActivity"
+        <activity
+            android:name=".StaffListView.DetailsActivity"
             android:parentActivityName=".StaffListView.ItemsActivity">
-        <!-- The meta-data tag is required if you support API level 15 and lower -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".StaffListView.ItemsActivity" />
-        </activity>
 
-        <activity android:name=".StaffListView.AddStaffActivity"
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StaffListView.ItemsActivity" />
+        </activity>
+        <activity
+            android:name=".StaffListView.AddStaffActivity"
             android:parentActivityName=".Admin">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Admin" />
         </activity>
-
-        <activity android:name=".AdmissionRequest.ViewRequestsActivity"
+        <activity
+            android:name=".AdmissionRequest.ViewRequestsActivity"
             android:parentActivityName=".Admin">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Admin" />
         </activity>
-
-        <activity android:name=".AdmissionRequest.ViewFormActivity"
+        <activity
+            android:name=".AdmissionRequest.ViewFormActivity"
             android:parentActivityName=".AdmissionRequest.ViewRequestsActivity">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AdmissionRequest.ViewRequestsActivity" />
         </activity>
-
         <activity android:name=".Staff" />
         <activity android:name=".Parent" />
         <activity android:name=".Admin" />
@@ -93,6 +109,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Service -->
+        <service
+            android:name=".Services.PushNotification"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+            <intent-filter>
+
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

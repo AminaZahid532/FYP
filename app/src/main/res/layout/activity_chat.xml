@@ -16,7 +16,6 @@
         android:layout_below="@+id/chat_toolbar"
         android:layout_marginBottom="6dp"/>
 
-
     <RelativeLayout
         android:id="@+id/chat_linear_layout"
         android:layout_width="match_parent"

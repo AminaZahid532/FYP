@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.juniorhome.Messaging.activities.MessagingActivity;
+import com.example.juniorhome.Messaging.activities.SettingsActivity;
+import com.example.juniorhome.StaffListView.ItemsActivity;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Parent extends AppCompatActivity {
 
@@ -28,6 +31,24 @@ public class Parent extends AppCompatActivity {
 
         initXml();
         setListeners();
+    }
+
+    public void viewStaff( View view )
+    {
+        Intent intent = new Intent(Parent.this, ItemsActivity.class);
+        startActivity(intent);
+    }
+
+    public void helpCenter( View view )
+    {
+        Intent intent = new Intent(Parent.this, help_center.class);
+        startActivity(intent);
+    }
+
+    public void viewtimeTable( View view )
+    {
+        Intent intent = new Intent(Parent.this, time_table.class);
+        startActivity(intent);
     }
 
     private void initXml(){
@@ -55,10 +76,9 @@ public class Parent extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings :
                 // User chose the "Settings" item, show the app settings UI...
-                Intent i = new Intent(Parent.this,UserProfile.class);
+                Intent i = new Intent(Parent.this, SettingsActivity.class);
                 startActivity(i);
                 return true;
-
             case R.id.action_logout:
                 builder = new AlertDialog.Builder(this);
                 v.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +93,11 @@ public class Parent extends AppCompatActivity {
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         SessionManager session = new SessionManager(getApplicationContext());
+                                        FirebaseDatabase.getInstance()
+                                                .getReference("users")
+                                                .child(session.getUserId())
+                                                .child("device_token")
+                                                .setValue("0");
                                         session.clear();
                                         finish();
                                     }
@@ -91,7 +116,6 @@ public class Parent extends AppCompatActivity {
                         alert.show();
                     }
                 });
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

@@ -1,12 +1,14 @@
 package com.example.juniorhome.Messaging.models;
 
 public class Messages {
-    private String from, message, type, to, messageID, time, date, name;
+    private String from, message, type, to, messageID, time, date, name, picUrl = "";
 
-    public Messages() { }
+    public Messages() {
+        this.picUrl = "";
+    }
 
     //
-    public Messages(String from, String message, String type, String to, String messageID, String time, String date, String name) {
+    public Messages(String from, String message, String type, String to, String messageID, String time, String date, String name, String picUrl) {
         this.from = from;
         this.message = message;
         this.type = type;
@@ -15,7 +17,15 @@ public class Messages {
         this.time = time;
         this.date = date;
         this.name = name;
+        this.picUrl = picUrl;
+    }
 
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
     }
 
     public String getFrom() {

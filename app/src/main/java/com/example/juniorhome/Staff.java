@@ -12,7 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.juniorhome.ChildrenListView.ChildrenListActivity;
 import com.example.juniorhome.Messaging.activities.MessagingActivity;
+import com.example.juniorhome.Messaging.activities.SettingsActivity;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Staff extends AppCompatActivity {
 
@@ -27,6 +30,15 @@ public class Staff extends AppCompatActivity {
         //String nm = session.getUsername();
         initXml();
         setListeners();
+    }
+    public void viewChild( View view ){
+        Intent intent = new Intent(Staff.this, ChildrenListActivity.class);
+        startActivity(intent);
+    }
+    public void viewtimeTable( View view )
+    {
+        Intent intent = new Intent(Staff.this, time_table.class);
+        startActivity(intent);
     }
 
     private void initXml(){
@@ -56,7 +68,7 @@ public class Staff extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings :
                 // User chose the "Settings" item, show the app settings UI...
-                Intent i = new Intent(Staff.this,UserProfile.class);
+                Intent i = new Intent(Staff.this, SettingsActivity.class);
                 startActivity(i);
                 return true;
 
@@ -74,6 +86,11 @@ public class Staff extends AppCompatActivity {
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         SessionManager session = new SessionManager(getApplicationContext());
+                                        FirebaseDatabase.getInstance()
+                                                .getReference("users")
+                                                .child(session.getUserId())
+                                                .child("device_token")
+                                                .setValue("0");
                                         session.clear();
                                         finish();
                                     }

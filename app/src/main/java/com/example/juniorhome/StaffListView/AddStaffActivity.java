@@ -29,18 +29,13 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.example.juniorhome.StaffListView.StaffItemClass;
-import com.example.juniorhome.UserItemClass;
+import com.example.juniorhome.UserModel;
 import com.example.juniorhome.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-
-import static android.app.Activity.RESULT_OK;
 
 public class AddStaffActivity extends AppCompatActivity{
 
@@ -49,11 +44,11 @@ public class AddStaffActivity extends AppCompatActivity{
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
-    private EditText nameEditText,expEditText,emailEditText,phoneEditText;
-    private EditText addressEditText,cnicEditText,qualificationEditText;
+    private EditText nameEditText, expEditText, emailEditText, phoneEditText;
+    private EditText addressEditText, cnicEditText, qualificationEditText;
     private ImageView chosenImageView;
     private ProgressBar uploadProgressBar;
-    private int userCount=0,staffCount=0;
+    private int userCount=0, staffCount=0;
     private Uri mImageUri;
 
     private StorageReference mStorageRef;
@@ -181,7 +176,7 @@ public class AddStaffActivity extends AppCompatActivity{
                             }, 500);
 
                             String sname = nameEditText.getText().toString().trim();
-                            UserItemClass user = new UserItemClass(sname,id,"staff",phoneEditText.getText().toString().trim(),
+                            UserModel user = new UserModel(sname,id,"staff",phoneEditText.getText().toString().trim(),
                                     "abc",emailEditText.getText().toString().trim(),cnicEditText.getText().toString().trim());
 
                             StaffItemClass staff = new StaffItemClass(sname,staffCount+1,id,getDateToday(),imgPath,expEditText.getText().toString().trim(),

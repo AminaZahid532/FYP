@@ -24,7 +24,7 @@ import java.util.Locale;
 
 import com.bumptech.glide.Glide;
 import com.example.juniorhome.R;
-import com.example.juniorhome.UserItemClass;
+import com.example.juniorhome.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -274,7 +274,7 @@ public class ViewFormActivity extends AppCompatActivity {
                     Log.w("Add Child", "Error writing document", e);
                 }
             });
-            UserItemClass user = new  UserItemClass(parentName,userId,"parent",phno,"abc",form.getEmail(),cnic);
+            UserModel user = new UserModel(parentName,userId,"parent",phno,"abc",form.getEmail(),cnic);
 
             db.collection("users").document().set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override

@@ -2,6 +2,7 @@ package com.example.juniorhome;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class Login extends AppCompatActivity {
 
@@ -67,7 +71,7 @@ public class Login extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        view.setEnabled(false);
+                        view.setEnabled(true);
                         if (task.isSuccessful()) {
                             if (task.getResult() == null) {
                                 Toast.makeText(Login.this, "Incorrect UserID", Toast.LENGTH_SHORT).show();
@@ -76,6 +80,7 @@ public class Login extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     String role = document.getString("role");
                                     String username = document.getString("uname");
+                                    updateDeviceToken(document.getString("uid"));
                                     if (document.get("password").toString().equals(password)) {
                                         if (role.equals("admin")) {
                                             intent = new Intent(Login.this, Admin.class);
@@ -102,5 +107,25 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void updateDeviceToken(final String currentUserId) {
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                try {
+                    if (task.getResult() != null) {
+                        String token = task.getResult().getToken();
+                        FirebaseDatabase.getInstance().getReference("users")
+                                .child(currentUserId)
+                                .child("device_token")
+                                .setValue(token);
+                    }
+                }
+                catch (Exception ex) {
+                    Log.d("Login", ex.getLocalizedMessage());
+                }
+            }
+        });
     }
 }

@@ -15,20 +15,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.juniorhome.Messaging.activities.ChatActivity;
-import com.example.juniorhome.Messaging.models.Contacts;
 import com.example.juniorhome.Messaging.models.Messages;
 import com.example.juniorhome.R;
 import com.example.juniorhome.SessionManager;
+import com.example.juniorhome.UserModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -89,61 +90,34 @@ public class ChatsFragment extends Fragment {
                         final String usersIDs = getRef(position).getKey();
                         final String[] retImage = {"default_image"};
 
-                        holder.userName.setText(model.getTo());
                         holder.lastMessage.setText(model.getMessage());
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        FirebaseFirestore.getInstance().collection("users")
+                                .whereEqualTo("uid", usersIDs)
+                                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
-                            public void onClick(View view) {
-                                Intent chatIntent = new Intent(getContext(), ChatActivity.class);
-                                chatIntent.putExtra("visit_user_id", usersIDs);
-                                chatIntent.putExtra("visit_user_name", model.getTo());
-//                                chatIntent.putExtra("visit_image", retImage[0]);
-                                startActivity(chatIntent);
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    List<UserModel> user = task.getResult().toObjects(UserModel.class);
+                                    for (final UserModel userModel : user) {
+                                        holder.userName.setText(userModel.getUname());
+                                        if (userModel.getProfilePicUrl() != null && !userModel.getProfilePicUrl().equals("")) {
+                                            Picasso.get().load(userModel.getProfilePicUrl()).into(holder.profileImage);
+                                        }
+
+                                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                                chatIntent.putExtra("visit_user_id", usersIDs);
+                                                chatIntent.putExtra("visit_user_name", userModel.getUname());
+                                                chatIntent.putExtra("visit_image", userModel.getProfilePicUrl());
+                                                startActivity(chatIntent);
+                                            }
+                                        });
+                                    }
+                                }
                             }
                         });
-//                        UsersRef.child(usersIDs).addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(DataSnapshot dataSnapshot) {
-//                                if (dataSnapshot.exists()) {
-//                                    if (dataSnapshot.hasChild("image")) {
-//                                        retImage[0] = dataSnapshot.child("image").getValue().toString();
-//                                        Picasso.get().load(retImage[0]).into(holder.profileImage);
-//                                    }
-//
-//                                    final String retName = dataSnapshot.child("name").getValue().toString();
-//                                    holder.userName.setText(retName);
-//
-////
-////                                    if (dataSnapshot.child("userState").hasChild("state"))
-////                                    {
-////                                        String state = dataSnapshot.child("userState").child("state").getValue().toString();
-////                                        String date = dataSnapshot.child("userState").child("date").getValue().toString();
-////                                        String time = dataSnapshot.child("userState").child("time").getValue().toString();
-////
-////                                        if (state.equals("online"))
-////                                        {
-////                                            holder.userStatus.setText("online");
-////                                        }
-////                                        else if (state.equals("offline"))
-////                                        {
-////                                            holder.userStatus.setText("Last Seen: " + date + " " + time);
-////                                        }
-////                                    }
-////                                    else
-////                                    {
-////                                        holder.userStatus.setText("offline");
-////                                    }
-////
-//
-//                                }
-//                            }
-//
-//
-//                            public void onCancelled(DatabaseError databaseError) {
-//
-//                            }
-//                        });
                     }
 
                     @NonNull
@@ -155,9 +129,10 @@ public class ChatsFragment extends Fragment {
 
                     @Override
                     public int getItemCount() {
-                        if(super.getItemCount() > 0){
+                        if (super.getItemCount() > 0) {
                             tvEmptyList.setVisibility(View.GONE);
-                        }else{
+                        }
+                        else {
                             tvEmptyList.setVisibility(View.VISIBLE);
                         }
                         return super.getItemCount();

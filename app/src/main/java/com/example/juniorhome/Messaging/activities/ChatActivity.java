@@ -81,14 +81,16 @@ public class ChatActivity extends AppCompatActivity {
 
         messageReceiverID = getIntent().getStringExtra("visit_user_id").toString();
         messageReceiverName = getIntent().getStringExtra("visit_user_name").toString();
-        if(getIntent().hasExtra("visit_image")) {
+        if (getIntent().hasExtra("visit_image")) {
             messageReceiverImage = getIntent().getExtras().get("visit_image").toString();
         }
 
         IntializeControllers();
 
         userName.setText(messageReceiverName);
-//        Picasso.get().load(messageReceiverImage).placeholder(R.drawable.profile_image).into(userImage);
+        if (!messageReceiverImage.equals("")) {
+            Picasso.get().load(messageReceiverImage).placeholder(R.drawable.profile_image).into(userImage);
+        }
 
         SendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +98,6 @@ public class ChatActivity extends AppCompatActivity {
                 SendMessage();
             }
         });
-
 
         SendFilesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,6 +254,14 @@ public class ChatActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
+        userImage.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChatActivity.this, SettingsActivity.class);
+                intent.putExtra("visit_user_id", messageReceiverID);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -365,6 +374,7 @@ public class ChatActivity extends AppCompatActivity {
             messageTextBody.put("messageID", messagePushID);
             messageTextBody.put("time", saveCurrentTime);
             messageTextBody.put("date", saveCurrentDate);
+            messageTextBody.put("picUrl", messageReceiverImage);
 
             Map messageBodyDetails = new HashMap();
             messageBodyDetails.put(messageSenderRef + "/" + messagePushID, messageTextBody);
@@ -374,6 +384,7 @@ public class ChatActivity extends AppCompatActivity {
             inboxBodyDetails.put(inboxReceiverRef, messageTextBody);
 
             RootRef.child("Contacts").updateChildren(inboxBodyDetails);
+            RootRef.child("MessageNotifications").child(messageReceiverID).push().setValue(messageTextBody);
 
             RootRef.updateChildren(messageBodyDetails).addOnCompleteListener(new OnCompleteListener() {
                 @Override

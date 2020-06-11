@@ -111,13 +111,25 @@ public class UserProfile extends AppCompatActivity {
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                                     for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                         String imgPath = document.getString("img");
-                                        //String exp = document.getString("experience");
+                                        //String email = document.getString("email");
 
                                         StorageReference storageRef = storage.getReference();
-                                        StorageReference pathReference = storageRef.child("staff/images/"+imgPath);
-                                        Glide.with(UserProfile.this)
-                                                .load(pathReference)
-                                                .into(img);
+                                        StorageReference pathReference = storageRef.child("staff/images/" + imgPath);
+
+                                        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                // Download directly from StorageReference using Glide
+                                                Glide.with(UserProfile.this)
+                                                        .load(uri)
+                                                        .into(img);
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception exception) {
+                                                Toast.makeText(UserProfile.this,"Can not load Image", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     }
                                 }
                             }
@@ -156,7 +168,7 @@ public class UserProfile extends AppCompatActivity {
                     public void onClick(final DialogInterface dialog, int id) {
 
                         final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        final String old = oldPass.getText().toString();
+                         final String old = oldPass.getText().toString();
                         final String newPassword = newPass.getText().toString();
                         final String confirm = confirmPass.getText().toString();
 

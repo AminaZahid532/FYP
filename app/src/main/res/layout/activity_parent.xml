@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_rounded_bg"
-            android:text="VIEW CHILDREN"
+            android:onClick="viewStaff"
+            android:text="@string/view_staff"
             android:textColor="@color/white" />
 
         <Button
@@ -57,16 +58,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_rounded_bg"
+            android:onClick="viewtimeTable"
             android:text="TIME TABLE"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/button18"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_rounded_bg"
-            android:text="EIDT PROFILE"
             android:textColor="@color/white" />
 
         <Button
@@ -75,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_rounded_bg"
+            android:onClick="helpCenter"
             android:text="HELP CENTER"
             android:textColor="@color/white" />
     </LinearLayout>

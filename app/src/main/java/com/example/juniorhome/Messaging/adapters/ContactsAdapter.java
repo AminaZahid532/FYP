@@ -12,11 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.juniorhome.Messaging.activities.ChatActivity;
-import com.example.juniorhome.Messaging.fragments.ContactsFragment;
 import com.example.juniorhome.R;
 import com.example.juniorhome.SessionManager;
-import com.example.juniorhome.StaffListView.RecyclerAdapter;
-import com.example.juniorhome.UserItemClass;
+import com.example.juniorhome.UserModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +26,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     private Context context;
     private SessionManager session;
-    private List<UserItemClass> contactsList = new ArrayList<>();
+    private List<UserModel> contactsList = new ArrayList<>();
 
-    public ContactsAdapter(List<UserItemClass> contactsList) {
+    public ContactsAdapter(List<UserModel> contactsList) {
         this.contactsList = contactsList;
     }
 
@@ -48,12 +47,18 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         holder.userName.setText(contactsList.get(position).getUname());
         holder.phoneNo.setText(contactsList.get(position).getPhoneNo());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
+        String profilePic = contactsList.get(position).getProfilePicUrl();
+        if (!profilePic.equals("")) {
+            Picasso.get().load(profilePic).into(holder.profileImage);
+        }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChatActivity.class);
                 intent.putExtra("visit_user_id", contactsList.get(position).getUid());
                 intent.putExtra("visit_user_name", contactsList.get(position).getUname());
+                intent.putExtra("visit_image", contactsList.get(position).getProfilePicUrl());
                 context.startActivity(intent);
             }
         });
